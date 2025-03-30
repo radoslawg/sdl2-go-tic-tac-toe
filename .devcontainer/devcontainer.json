@@ -7,8 +7,9 @@
     //         "ghcr.io/devcontainers-extra/features/neovim-homebrew:1": []
   },
 
-  "postCreateCommand": "brew install neovim fzf zoxide ripgrep fd && cd /root/.config/nvim && git pull && chown -R root:root /workspaces && git config --global --add safe.directory /workspaces/sdl2-go",
-  "postAttachCommand": "cd /root/.config/nvim && git pull"
-  //    "remoteUser": "root",
-  //    "containerUser": "root",
+  "postCreateCommand": "brew install neovim fzf zoxide ripgrep fd && cd /home/vscode/.config/nvim && git pull",
+  //&& git config --global --add safe.directory /workspaces/sdl2-go-tic-tac-toe",
+  "postAttachCommand": "sh ./setup_env.sh && cd /home/vscode/.config/nvim && git pull ",
+//      "remoteUser": "radekg",
+//      "containerUser": "radekg",
 }

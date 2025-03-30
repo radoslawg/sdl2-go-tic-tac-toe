@@ -2,8 +2,10 @@ ARG GO_VERSION=1.24
 
 FROM golang:${GO_VERSION}-bookworm
 
+ARG USERNAME=vscode
+
 # Install packages and Go language server
-RUN apt update && apt install -y --no-install-recommends \
+RUN apt update && apt dist-upgrade -y && apt install -y --no-install-recommends \
   git \
   sudo \
   openssh-client \
@@ -14,19 +16,21 @@ RUN apt update && apt install -y --no-install-recommends \
   unzip  \
   luarocks \
   && rm -rf /var/lib/apt/lists/*
-#RUN apk add -q --update --progress --no-cache git sudo openssh-client zsh neovim gcc fzf
-#RUN go get -u -v golang.org/x/tools/cmd/gopls 2>&1
 
+#RUN useradd $USERNAME -s '/usr/bin/zsh' -D
+
+RUN useradd $USERNAME -s /usr/bin/zsh
+RUN echo radekg USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME
+RUN chmod 0440 /etc/sudoers.d/$USERNAME
+
+USER $USERNAME
 # Setup shell
-WORKDIR /root
-ENV EDITOR=nvim \
-  LANG=pl_PL.UTF-8 \
-  LC_ALL=pl_PL.UTF-8
+WORKDIR /home/$USERNAME
+ENV EDITOR=nvim 
 RUN sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended \
-  && printf 'ZSH_THEME="robbyrussell"\nENABLE_CORRECTION="false"\nplugins=(git copyfile extract colorize dotenv encode64 golang)\n' | cat /root/.zshrc > /root/.zshrc2 \
-  && rm /root/.zshrc \
-  && mv /root/.zshrc2 /root/.zshrc \
-  && printf '\ncd /workspaces/sdl2-go\n' >> /root/.zshrc \
-  && /usr/bin/chsh -s /usr/bin/zsh root \
-  && git clone https://github.com/radoslawg/nvim-dotfiles.git /root/.config/nvim
-USER root
+  && printf 'ZSH_THEME="robbyrussell"\nENABLE_CORRECTION="false"\nplugins=(git copyfile extract colorize dotenv encode64 golang)\n' | cat .zshrc > .zshrc2 \
+  && rm .zshrc \
+  && mv .zshrc2 .zshrc \
+  && printf '\ncd /workspaces/sdl2-go-tic-tac-toe\n' >> .zshrc \
+  && git clone https://github.com/radoslawg/nvim-dotfiles.git .config/nvim
+#USER radekg

@@ -1,7 +1,13 @@
 package main
 
-import ("fmt")
- 
+import (
+	"fmt"
+)
+
+func Test(s string) {
+}
+
 func main() {
-	fmt.Println("Test")
+	a := 10000
+	fmt.Printf("%d", a)
 }
