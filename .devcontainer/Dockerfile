@@ -20,7 +20,7 @@ RUN apt update && apt dist-upgrade -y && apt install -y --no-install-recommends 
 #RUN useradd $USERNAME -s '/usr/bin/zsh' -D
 
 RUN useradd $USERNAME -s /usr/bin/zsh
-RUN echo radekg USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME
+RUN echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME
 RUN chmod 0440 /etc/sudoers.d/$USERNAME
 
 USER $USERNAME
