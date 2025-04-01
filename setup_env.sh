@@ -33,4 +33,8 @@ for go_package in "${go_packages[@]}"; do
   go install -v "$go_package"
 done
 
+sudo apt update
+sudo apt install -y libsdl2-dev --no-install-recommends
+
+go mod download
 

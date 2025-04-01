@@ -16,3 +16,10 @@ On **Linux** you can use:
 devpod ssh
 ```
 However, on **Windows** it seems it does not work and I have to ssh into the container.
+
+# Resources
+
+- [SDL2 in Go for Beginners - Youtube](https://www.youtube.com/watch?v=qgPR8sWcnlo)
+- [SDL2 bindings - Github](https://github.com/veandco/go-sdl2)
+- [SDL2 bindings documentation](https://pkg.go.dev/github.com/veandco/go-sdl2)
+- [SDL2 original documentation](https://wiki.libsdl.org/SDL2/FrontPage)
