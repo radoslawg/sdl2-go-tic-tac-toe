@@ -20,9 +20,17 @@ for package in "${packages[@]}"; do
   /home/linuxbrew/.linuxbrew/bin/brew install "$package"
 done
 
-go install -v github.com/incu6us/goimports-reviser/v3@latest
-go install -v mvdan.cc/gofumpt@latest
-go install -v github.com/segmentio/golines@latest
-go install -v github.com/go-delve/delve/cmd/dlv@latest
+go_packages=(
+  golang.org/x/tools/gopls@latest
+  github.com/incu6us/goimports-reviser/v3@latest
+  mvdan.cc/gofumpt@latest
+  github.com/segmentio/golines@latest
+  github.com/go-delve/delve/cmd/dlv@latest
+)
 
-cp -r ./.config ~/
+for go_package in "${go_packages[@]}"; do
+  echo "Installing $go_package..."
+  go install -v "$go_package"
+done
+
+
