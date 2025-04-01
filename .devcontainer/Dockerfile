@@ -31,6 +31,6 @@ RUN sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/m
   && printf 'ZSH_THEME="robbyrussell"\nENABLE_CORRECTION="false"\nplugins=(git copyfile extract colorize dotenv encode64 golang)\n' | cat .zshrc > .zshrc2 \
   && rm .zshrc \
   && mv .zshrc2 .zshrc \
-  && printf '\ncd /workspaces/sdl2-go-tic-tac-toe\n' >> .zshrc \
-  && git clone https://github.com/radoslawg/nvim-dotfiles.git .config/nvim
+  && printf '\ncd /workspaces/sdl2-go-tic-tac-toe\n' >> .zshrc
+#  && git clone https://github.com/radoslawg/nvim-dotfiles.git .config/nvim
 #USER radekg
